@@ -70,7 +70,8 @@
 			element: null,
 			classMain: 'selectBox',
 			startFn: function() {},
-			selectedFn: function() {},
+			selectFn: function() {},
+			changeTitle: function() {},
 			eachFn: function() {}
 		}, opts);
 
@@ -111,9 +112,11 @@
 			var obj = this;
 			this.tags.button.innerHTML = this.tags.select.value;
 			this.tags.select.addEventListener('change', function() {
-				obj.defaults.selectedFn.call(this, this.selectedIndex);
-				obj.tags.button.innerHTML = '<span>' + this.value + '</span>';
+				obj.defaults.selectFn.call(this, this.selectedIndex);
+				obj.tags.button.innerHTML = '<span>' + this.innerHTML + '</span>';
+				obj.defaults.changeTitle.call(obj.tags.button, this.innerHTML, this.value);
 			});
+
 		},
 
 		eventsDesktop: function() {
