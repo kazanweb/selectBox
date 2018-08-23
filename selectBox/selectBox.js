@@ -110,11 +110,11 @@
 		events: function() {
 
 			var obj = this;
-			this.tags.button.innerHTML = this.tags.select.value;
+			this.tags.button.innerHTML = '<span>' + this.tags.select.options[this.tags.select.selectedIndex].text + '</span>';
 			this.tags.select.addEventListener('change', function() {
 				obj.defaults.selectFn.call(this, this.selectedIndex);
-				obj.tags.button.innerHTML = '<span>' + this.innerHTML + '</span>';
-				obj.defaults.changeTitle.call(obj.tags.button, this.innerHTML, this.value);
+				obj.tags.button.innerHTML = '<span>' + obj.tags.select.options[obj.tags.select.selectedIndex].text + '</span>';
+				obj.defaults.changeTitle.call(obj.tags.button, this.textContent, this.value);
 			});
 
 		},
@@ -161,7 +161,7 @@
 					obj.tags.items[index].classList.add('selected');
 				}
 
-				obj.defaults.eachFn.call(obj.tags.items[index], index, this.innerHTML, this.value);
+				obj.defaults.eachFn.call(obj.tags.items[index], index, this.text, this.value);
 
 			});
 
